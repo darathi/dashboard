@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-9">
+         <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>DASHBOARD</title>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+         <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['','Hours per Day'],
+              ['',58],           
+          ['',42]
+        ]);
+
+        var options = {
+          title: '',
+          pieHole: 0.7,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchartphy'));
+        chart.draw(data, options);
+      }
+    </script>
+         <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['','Hours per Day'],
+              ['',76],           
+          ['',24]
+        ]);
+
+        var options = {
+          title: '',
+          pieHole: 0.7,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchartchem'));
+        chart.draw(data, options);
+      }
+    </script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['', 'Hours per Day'],
+              ['',     25],           
+          ['',75]
+        ]);
+
+        var options = {
+          title: '',
+          pieHole: 0.7,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchartbio'));
+        chart.draw(data, options);
+      }
+    </script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['works', 'Hours per Day'],
+              ['completed',     25],           
+          ['Uncompleted',     7],
+        ]);
+
+        var options = {
+          title: 'Goals',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
+    <link rel="stylesheet" href="styles1.css">
+         <script src="componentjsc.js">
+                </script>   
+        <script src="https://kit.fontawesome.com/d9f7ec7b29.js" crossorigin="anonymous"></script>
+        <script>
+
+       var Calendar = function(t) {
+    this.divId = t.RenderID ? t.RenderID : '[data-render="calendar"]', this.DaysOfWeek = t.DaysOfWeek ? t.DaysOfWeek : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], this.Months = t.Months ? t.Months : ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var e = new Date;
+    this.CurrentMonth = e.getMonth(), this.CurrentYear = e.getFullYear();
+    var r = t.Format;
+    this.f = "string" == typeof r ? r.charAt(0).toUpperCase() : "M"
+};
+Calendar.prototype.nextMonth = function() {
+    11 == this.CurrentMonth ? (this.CurrentMonth = 0, this.CurrentYear = this.CurrentYear + 1) : this.CurrentMonth = this.CurrentMonth + 1, this.divId = '[data-active="false"] .render', this.showCurrent()
+}, Calendar.prototype.prevMonth = function() {
+    0 == this.CurrentMonth ? (this.CurrentMonth = 11, this.CurrentYear = this.CurrentYear - 1) : this.CurrentMonth = this.CurrentMonth - 1, this.divId = '[data-active="false"] .render', this.showCurrent()
+}, Calendar.prototype.previousYear = function() {
+    this.CurrentYear = this.CurrentYear - 1, this.showCurrent()
+}, Calendar.prototype.nextYear = function() {
+    this.CurrentYear = this.CurrentYear + 1, this.showCurrent()
+}, Calendar.prototype.showCurrent = function() {
+    this.Calendar(this.CurrentYear, this.CurrentMonth)
+}, Calendar.prototype.checkActive = function() {
+    1 == document.querySelector(".months").getAttribute("class").includes("active") ? document.querySelector(".months").setAttribute("class", "months") : document.querySelector(".months").setAttribute("class", "months active"), "true" == document.querySelector(".month-a").getAttribute("data-active") ? (document.querySelector(".month-a").setAttribute("data-active", !1), document.querySelector(".month-b").setAttribute("data-active", !0)) : (document.querySelector(".month-a").setAttribute("data-active", !0), document.querySelector(".month-b").setAttribute("data-active", !1)), setTimeout(function() {
+        document.querySelector(".calendar .header").setAttribute("class", "header active")
+    }, 200), document.querySelector("body").setAttribute("data-theme", this.Months[document.querySelector('[data-active="true"] .render').getAttribute("data-month")].toLowerCase())
+}, Calendar.prototype.Calendar = function(t, e) {
+    "number" == typeof t && (this.CurrentYear = t), "number" == typeof t && (this.CurrentMonth = e);
+    var r = (new Date).getDate(),
+        n = (new Date).getMonth(),
+        a = (new Date).getFullYear(),
+        o = new Date(t, e, 1).getDay(),
+        i = new Date(t, e + 1, 0).getDate(),
+        u = 0 == e ? new Date(t - 1, 11, 0).getDate() : new Date(t, e, 0).getDate(),
+        s = "<span>" + this.Months[e] + " &nbsp; " + t + "</span>",
+        d = '<div class="table">';
+    d += '<div class="row head">';
+    for (var c = 0; c < 7; c++) d += '<div class="cell">' + this.DaysOfWeek[c] + "</div>";
+    d += "</div>";
+    for (var h, l = dm = "M" == this.f ? 1 : 0 == o ? -5 : 2, v = (c = 0, 0); v < 6; v++) {
+        d += '<div class="row">';
+        for (var m = 0; m < 7; m++) {
+            if ((h = c + dm - o) < 1) d += '<div class="cell disable">' + (u - o + l++) + "</div>";
+            else if (h > i) d += '<div class="cell disable">' + l++ + "</div>";
+            else {
+                d += '<div class="cell' + (r == h && this.CurrentMonth == n && this.CurrentYear == a ? " active" : "") + '"><span>' + h + "</span></div>", l = 1
+            }
+            c % 7 == 6 && h >= i && (v = 10), c++
+        }
+        d += "</div>"
+    }
+    d += "</div>", document.querySelector('[data-render="month-year"]').innerHTML = s, document.querySelector(this.divId).innerHTML = d, document.querySelector(this.divId).setAttribute("data-date", this.Months[e] + " - " + t), document.querySelector(this.divId).setAttribute("data-month", e)
+}, window.onload = function() {
+    var t = new Calendar({
+        RenderID: ".render-a",
+        Format: "M"
+    });
+    t.showCurrent(), t.checkActive();
+    var e = document.querySelectorAll(".header [data-action]");
+    for (i = 0; i < e.length; i++) e[i].onclick = function() {
+        if (document.querySelector(".calendar .header").setAttribute("class", "header"), "true" == document.querySelector(".months").getAttribute("data-loading")) return document.querySelector(".calendar .header").setAttribute("class", "header active"), !1;
+        var e;
+        document.querySelector(".months").setAttribute("data-loading", "true"), this.getAttribute("data-action").includes("prev") ? (t.prevMonth(), e = "left") : (t.nextMonth(), e = "right"), t.checkActive(), document.querySelector(".months").setAttribute("data-flow", e), document.querySelector('.month[data-active="true"]').addEventListener("webkitTransitionEnd", function() {
+            document.querySelector(".months").removeAttribute("data-loading")
+        }), document.querySelector('.month[data-active="true"]').addEventListener("transitionend", function() {
+            document.querySelector(".months").removeAttribute("data-loading")
+        })
+    }
+};
+        </script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script>
+        google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['', 'Previos week', 'This week'],
+          ['',  30,      25],
+          ['',  10,      35],
+          ['',  28,      10],
+          ['',  35 ,     28],
+          ['',  38,      35],
+          ['',  25,      15],
+          ['',  10,      26],
+          ['',  40,      15]
+        ]);
+
+        var options = {
+          title: 'Spent time',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      };
+    </script>
+        
+        
+       
+    </head>
+    <body>
+
+    <div class="whole">   
+        <!_________navigation(left)_______>
+    <div class="container">
+        <div class="navigation">
+           <ul>
+              <li>
+                 <a href="#" ><span class="icon"><i class="fa fa-graduation-cap" aria-hidden="true"></i></span></a>
+              </li>
+               <li>
+                  <a href="#"> <span class="icon"><i class="fa fa-comment-o" aria-hidden="true"></i></span></a>
+              </li>
+               <li>
+                 <a href="#"> <span class="icon"><i class="fa fa-star-o" aria-hidden="true"></i></span></a>
+              </li>
+               <li>
+                 <a href="#"> <span class="icon"><i class="fa fa-bolt" aria-hidden="true"></i></span></a>
+              </li>
+            </ul>
+        </div>
+        <</div>
+                   
+   
+        <div class="container">
+        <div class="content">
+        <div class="menuitems">
+           <ul>
+              <li>
+                 <a href="#" ><span class="icon1"><i class="fa fa-home" aria-hidden="true"></i></span>
+                  <span class="title"><h2>Home</h2></a></span>
+              </li>
+               <li>
+                  <a href="#"> <span class="icon1"><i class="fa fa-address-book-o" aria-hidden="true"></i></span>
+                    <span class="title"><h2>Tutoring</h2></span>
+                   </a>
+              </li>
+               <li>
+                 <a href="mycourse.html"> <span class="icon1"><i class="fa fa-book" aria-hidden="true"></i></span>
+                    <span class="title"><h2>My course</h2></span>
+                     </a>
+              </li>
+               <li>
+                 <a href="#"> <span class="icon1"><i class="fa fa-graduation-cap" aria-hidden="true"></i></span>
+                   <span class="title"> <h2>My school</h2></span>
+                     </a>
+              </li>
+               <li>
+                <a href="#" ><span class="icon1"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span>
+                   <span class="title"><h2>Tests</h2></a></span>
+              </li>
+            </ul>
+   
+        </div>
+            </div>
+        </div>
+          
+              
+        <div class="maincontent">
+         <div class="topbar">
+
+           <h1>Hi,champion!</h1>
+            <h4>Bytes counter</h4>
+         </div>
+         </div> 
+        <div class="maincontent">
+            <div class="upcoming">
+              <h3>Upcoming lessons</h3>
+            </div>
+        </div>
+        <div class="maincontent">
+            <div class="blueup">
+                <table >
+                
+                    <tr>
+                        <th><b><span class="datelarge">June,10</span><br>4:00PM</b></th> 
+                        <th><h3><span class="tutorfix">Tutoring algebra</span><br>Kristein large</h3></th>
+                        <th><img class="testi" src="testimonial1.PNG"></th>
+                    </tr>
+                </table>
+                <table>
+                
+                    <tr>
+                        <th><b><span class="datelarge">June,10</span></b></th> 
+                        <th><h3><span class="tutorfix">School homework</span><br>Global history<br>/analysis</h3></th>
+                        <th><img class="testi" src="testimonial3.PNG"></th>
+                    </tr>
+                </table>
+                <table>
+                
+                    <tr>
+                        <th><b><span class="datelarge">June,10</span></b><br>5:00PM</th> 
+                        <th><h3><span class="tutorfix">Tutoring/<br>Franchlanguage</span><br>Pierrre Hackett</h3></th>
+                        <th><img class="testi" src="testimonial2.PNG"></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="maincontent">
+        <div class="leaderboard">
+            <table class="leadertable">
+                <tr class="header1">
+                    <th class="h1">Rank</th>
+                     <th class="h1">Name</th>
+                     <th class="h1">Best Score</th>
+                     <th class="h1">Points</th>
+                </tr>
+                <tr class="r2">
+                    <th class="h2">1</th>
+                     <th class="h2"><img class="imageset" src="testimonial1.PNG">Pattrick alves Devano</th>
+                     <th class="h2">98</th>
+                     <th class="h2">2324</th>
+                </tr>
+                <tr class="r3">
+                    <th class="h3">2</th>
+                     <th class="h3"><img  class="imageset" src="testimonial1.PNG">Jennifer Hudson</th>
+                     <th class="h3">96</th>
+                     <th class="h3">2310</th>
+                </tr>
+                 <tr class="r4">
+                    <th class="h4">3</th>
+                     <th class="4"><img  class="imageset" src="testimonial2.PNG">Stevia Rownders</th>
+                     <th class="h4">97</th>
+                     <th class="h4">2305</th>
+                </tr>
+                 <tr class="r5">
+                    <th class="h5">5</th>
+                     <th class="h5"><img  class="imageset" src="testimonial3.PNG">Sam Anderson</th>
+                     <th class="h5">89</th>
+                     <th class="h5">2119</th>
+                </tr>
+                 <tr class="r6">
+                    <th class="h6">6</th>
+                     <th class="h6"><img  class="imageset" src="testimonial2.PNG">Jorge Rodriguez</th>
+                     <th class="h6">82</th>
+                     <th class="h6">1998</th>
+                </tr>
+            </table>
+            </div>
+        </div>
+        <div class="maincontent">
+            <div class="tasks">
+                <h2 style="padding-left:10px;">Tasks</h2>
+                <table style="width:330px;height:400px;background-color:white;border-bottom: 2px; ">
+                    <tr style="width:100px;height:50px;padding: 0;">
+                    <th><h4 style="font-family: serif;color:#000000;"><i style="margin-right: 20px;margin-left:10px;"class="fa fa-square-o" aria-hidden="true"></i>Concise history of Jend,Soediurman</h4><br><h5 style="font-family: fantasy;color:#e156e3">Due on 4:30 PM,3 Mar 2019</h5><button style="background-color: #0ceb91;border-radius: 20%;color:white;border-color: #0ceb91;width:70px">History</button><br><img style="width:40px;height:40px;border-radius:40%" src="testimonial1.PNG">Mrs.Shakeera</th>
+                    </tr>
+                    <tr style="width:100px;height:50px;padding: 0;">
+                    <th><h4 style="font-family: serif;color:#000000;"><i style="margin-right: 20px;margin-left:10px;" class="fa fa-square-o" aria-hidden="true"></i>Make 3 carricature on paper</h4><br><h5 style="font-family: fantasy;color:#e156e3">Due on 2:40 PM,28 Feb 2019</h5><button style="background-color: #1da0c4;border-radius: 20%;color:white;border-color:#1da0c4;width:70px">Art</button><br><img style="width:40px;height:40px;border-radius:40%" src="testimonial1.PNG">Mrs.Shakeera</th>
+                    </tr>
+                    <tr style="color:#e156e3;width:100px;height:50px;padding:0;"><th>Sell all Tasks</th></tr>
+                </table>
+                         
+            
+            </div>
+        </div>
+        <div class="maincontent">
+            <div class="calendardesign">
+            <div class="calendar">
+	<div class="header">
+		<a data-action="prev-month" href="javascript:void(0)" title="Previous Month"><i></i></a>
+		<div class="text" data-render="month-year"></div>
+		<a data-action="next-month" href="javascript:void(0)" title="Next Month"><i></i></a>
+	</div>
+	<div class="months" data-flow="left">
+		<div class="month month-a">
+			<div class="render render-a"></div>
+		</div>
+		<div class="month month-b">
+			<div class="render render-b"></div>
+		</div>
+	</div>
+</div>
+            </div>
+        </div>
+        <div class="maincontent">
+           <div class="hw">
+               <table style="background-color: white; " class="hwtable">
+              <tr class="hwhead">
+                        <th ><b><h4 style="color:#136b32;" class="homework">Homework progress</h4></b></th>
+                   <tr class="hwhead">
+                        <th id="donutchartbio" style="width:100px" ></th> 
+                        <th><h5 style="color:#000000;">Biology</h5><br><h7>september 7,<br> Monday</h7></th>
+                        <th><i class="fa fa-caret-right" aria-hidden="true"></i></th>
+                    </tr>
+                   <tr class="hwhead">
+                        <th id="donutchartphy" style="width:100px"></th> 
+                        <th><h5 style="color:#000000;">Physics</h5><br><h7>september 7,<br> Monday</h7></th>
+                        <th><i class="fa fa-caret-right" aria-hidden="true"></i></th>
+                   </tr>
+                   <tr class="hwhead">
+                        <th id="donutchartchem" style="width:100px"></th> 
+                        <th><h5 style="color:#000000;">Chemistry</h5><br><h7>september 7,<br> Tuesday</h7></th>
+                        <th><i class="fa fa-caret-right" aria-hidden="true"></i></th>
+                    </tr>
+                   
+               </table>
+            </div>
+        </div>
+       
+        <div class="maincontent">
+        <div class="linegraph"id="curve_chart" >
+             
+        </div>
+        </div>
+        <div class="maincontent">
+            <div class="radargraph" id="mychartradar" width="370px" height="300px">
+                 
+                     </div>
+        </div>
+        <div class="maincontent">
+        <div class="yourscourse">
+            <h3>your Courses</h3>
+            </div>
+        </div>
+        <div class="maincontent">
+        <div class="goals" >
+            <div>
+                <select  class="selecting">
+                 <option>Daily</option>
+                <option>Weekly</option>
+                <option>Monthly</option>
+                </select>
+            </div>
+            <div id="donutchart" style="width: 400px; height: 300px">
+            </div>
+            </div>
+        </div>
+                
+             <div class="menuitems2">
+           <ul>
+              <li>
+                 <a href="#" ><span class="icon2"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                  <span class="title1"><h2>Notes</h2></a></span>
+              </li>
+               <li>
+                  <a href="#"> <span class="icon2"><i class="fa fa-bookmark-o" aria-hidden="true"></i></span>
+                    <span class="title1"><h2>Bookmarks</h2></span>
+                   </a>
+              </li>
+               <li>
+                 <a href="#"> <span class="icon2"><i class="fa fa-cog" aria-hidden="true"></i></span>
+                    <span class="title1"><h2>Settings</h2></span>
+                     </a>
+              
+            </ul>
+        </div>
+            <div class="add">
+                
+                <span class="title2"><h2>Download our</br> mobile app</h2></span>
+                <a href="#"><h3>intelymobile.com <nbsp><nbsp><span class="addicon"><i class="fa fa-arrow-right "></i></span></h3>
+                    </a>
+            </div>
+                
+            <div class="add1">
+                      <b>Advertisement here</b>
+            </div>
+     <div class="invite">
+         <b><h2>Invite Friends</h2>
+            <h4>Get free months of premium</h4>
+             </br><button href="" class="button1">Get the link</button>
+        </div>
+                   
+
+      </div>
+                              
+        </div>
+            </div>
+        </div> 
+       <
+ </div> 
+</body>
+</html>
